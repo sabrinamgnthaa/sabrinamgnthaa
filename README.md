@@ -31,10 +31,6 @@ Menu ini mencatat aktivitas peminjaman dan pengembalian buku:
 - **Peminjaman** – Mencatat transaksi peminjaman berdasarkan anggota dan buku.
 - **Pengembalian** – Mencatat pengembalian buku serta menghitung keterlambatan jika ada.
 
-### 3️⃣ **Laporan**
-Menu ini menyajikan rekap riwayat peminjaman:
-- **Laporan Peminjaman** – Menampilkan seluruh riwayat peminjaman yang dapat dicetak sebagai dokumen laporan (PDF/Print).
-
 ---
 
 ## 🎨 Fokus Desain UI
@@ -106,3 +102,141 @@ Berikut adalah *external libraries* yang digunakan dalam aplikasi:
 │ ├── AbsoluteLayout.jar
 │ ├── flatlaf-3.2.1.jar
 │ └── JDK 23 (Default)
+
+## 🛠️ Langkah-Langkah Instalasi dan Menjalankan Aplikasi
+
+### 1. Install Semua Tools
+Pastikan telah menginstal:
+- NetBeans
+- JDK 23
+- Laragon
+- MySQL Workbench atau SQLyog
+
+### 2. Jalankan MySQL via Laragon
+- Buka Laragon
+- Klik tombol **Start All**
+- Pastikan MySQL sudah berjalan (status: Running)
+
+### 3. Setup Database
+- Buka **MySQL Workbench** atau **SQLyog**
+- Buat database dengan nama:
+  ```sql
+  CREATE DATABASE db_library;
+  ```
+- Import file SQL: `db_library.sql` ke dalam database tersebut
+
+### 4. Buka Proyek di NetBeans
+- Jalankan NetBeans
+- Klik `File > Open Project`
+- Arahkan ke folder `Libralystic/`
+- Tunggu hingga project berhasil dimuat
+
+### 5. Tambahkan Library Eksternal (Jika Belum)
+- Klik kanan proyek > `Properties` > `Libraries` > `Add JAR/Folder`
+- Tambahkan semua `.jar` dari folder `Libraries/`
+
+### 6. Jalankan Aplikasi
+- Klik kanan `FormLogin.java` atau `MenuUtama.java` > `Run File`
+- Form Login akan muncul
+
+---
+
+## 🔐 Penggunaan Aplikasi
+
+### 1. Login
+- Masukkan `username` dan `password` admin
+- Jika belum memiliki akun:
+  - Klik tombol **Sign Up**
+  - Isi formulir pendaftaran, lalu kembali ke login
+
+### 2. Menu Utama (Setelah Login)
+Admin akan diarahkan ke halaman utama dengan berbagai menu:
+
+---
+
+## 🧭 Navigasi Menu dan Fitur
+
+### 📌 Dashboard
+- Menampilkan ringkasan:
+  - Jumlah peminjaman
+  - Jumlah anggota
+  - Jumlah koleksi buku
+- Ditampilkan dalam **panel interaktif** dengan ikon dan visual modern
+
+---
+
+### 📌 Menu Anggota
+- Fitur:
+  - Tambah data anggota
+  - Edit data anggota
+  - Hapus anggota
+  - Tampilkan daftar anggota
+- Data yang disimpan meliputi:
+  - Nama, NISN, jenis kelamin, alamat, dan nomor kontak
+
+---
+
+### 📌 Menu Daftar Buku
+- Fitur:
+  - Tambah buku baru (dengan cover/gambar)
+  - Edit detail buku
+  - Hapus buku
+  - Tampilkan koleksi buku per kategori
+- Data buku mencakup:
+  - Judul, penulis, kategori, penerbit, tahun, stok
+
+---
+
+### 📌 Menu Kategori
+- Mengatur kategori buku seperti:
+  - Fiksi
+  - Non-fiksi
+  - Referensi
+  - Agama
+  - Ilmiah, dll.
+- Admin dapat:
+  - Tambah, ubah, dan hapus kategori
+
+---
+
+### 📌 Menu Penerbit
+- Mendata dan mengelola informasi penerbit buku:
+  - Nama penerbit
+  - Alamat
+  - Kontak
+
+---
+
+### 📌 Menu Transaksi
+
+#### 🔹 Peminjaman
+- Memilih anggota dan buku
+- Mengatur tanggal pinjam dan tenggat
+- Otomatis mengurangi stok buku
+- Validasi data sebelum disimpan
+
+#### 🔹 Pengembalian
+- Mencatat tanggal pengembalian
+- Menghitung hari keterlambatan
+- Stok buku otomatis bertambah setelah dikembalikan
+
+---
+
+## 🧪 Testing dan Troubleshooting
+
+Jika aplikasi tidak dapat terhubung ke database:
+- Pastikan Laragon sudah jalan
+- Pastikan `db_library` sudah terimport
+- Periksa file `Koneksi.java`:
+  ```java
+  String url = "jdbc:mysql://localhost:3306/db_library";
+  String user = "root";
+  String pass = "";
+  ```
+
+---
+
+## ✅ Selesai!
+Sekarang aplikasi Libralystic sudah siap digunakan untuk mengelola perpustakaan Anda. Jangan lupa untuk selalu backup database secara berkala untuk menghindari kehilangan data.
+
+---
